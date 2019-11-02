@@ -1,0 +1,131 @@
+@extends('layouts.app')
+<style>
+    .main
+ {
+   /* background-color: #8B0000; */
+ padding-top: 5%;
+ padding-bottom: 5%;
+ }
+    </style>
+@section('content')
+<?php
+
+?>
+<div class="container">
+  <table class="table table-bordered">
+    <br>
+    <thead>
+      <tr>
+        <th>Name</th>        
+        <th>Project Permission</th>        
+        <th>Machine Permission</th>        
+        <th>Ressearch Permission</th>        
+      </tr>      
+    </thead>
+    <tbody>
+        <div class='form-group'>
+</div>
+        @foreach($users as $row)
+            <tr>    
+                <tbody>
+                    <td>{{$row['name']}}</td>                              
+                    @foreach($up as $perm)
+                        @if($row['id'] == $perm['model_id'])                        
+                            @if($perm['permission_id'] == '6')
+                                <td>Q
+                                <a href="{{ route('admin.revokeP', $row['id']) }}">
+                                    <button type="submit" name="revokeP" class="btn btn-danger" id="getPermB">Remove from Project Editor</button>
+                                </a>
+                                </td>                                    
+                            @else
+                                <td>
+                                <a href="{{ route('admin.givePerm', $row['id']) }}">
+                                    <button type="submit" name="giveP" class="btn btn-success">Add to Project Editor</button>
+                                </a>
+                                </td>                     
+                            @endif 
+                             @else
+                                <td>
+                                <a href="{{ route('admin.givePerm', $row['id']) }}">
+                                    <button type="submit" name="giveP" class="btn btn-success">Add to Project Editor</button>
+                                </a>
+                                </td>                         
+                        @endif
+                    @endforeach
+
+                    @foreach($up as $perm)
+                        @if($row['id'] == $perm['model_id'])
+                            @if($perm['permission_id'] == '7')
+                                <td>
+                                <a>
+                                    <button type="submit" name="revokeP" class="btn btn-danger" id="getPermB">Remove from Project Editor</button>
+                                </a>
+                                </td>                                    
+                            @else
+                                <td>
+                                <a>
+                                    <button type="submit" name="giveP" class="btn btn-success">Add to Project Editor</button>
+                                </a>
+                                </td>                    
+                            @endif                               
+                        @endif
+                    @endforeach
+
+                    @foreach($up as $perm)
+                        @if($row['id'] == $perm['model_id'])
+                            @if($perm['permission_id'] == '8')
+                                <td>
+                                <a>
+                                    <button type="submit" name="revokeP" class="btn btn-danger" id="getPermB">Remove from Project Editor</button>
+                                </a>
+                                </td>                                    
+                            @else
+                                <td>
+                                <a>
+                                    <button type="submit" name="giveP" class="btn btn-success">Add to Project Editor</button>
+                                </a>
+                                </td>                    
+                            @endif                               
+                        @endif
+                    @endforeach
+
+                </tbody>
+            </tr> 
+        @endforeach           
+    </table>
+</div>
+                                     
+            {{-- </td>            
+            <td>                
+                @if(auth()->user()->hasPermissionTo('edit_project'))
+                {{ csrf_field() }}
+                <a><button type="submit"                     
+                    name="give_mech" class="btn btn-success">Add to Machine Editor</button></a>
+                @else
+                <a href="{{ route('admin.givePerm', $row['id']) }}"> <button type="submit" name="revoke_mech" class="btn btn-danger">Remove from Machine Editor</button></a>
+                @endif
+            </td>
+            <td>
+                @if(auth()->user()->hasRole('admin'))
+                <a><button type="submit" name="give_Research" class="btn btn-success">Add to Research Editor</button></a>
+                @else
+                <a><button type="submit" name="revoke_Research" class="btn btn-danger">Remove from Research Editor</button></a>
+                @endif                
+            </td>
+        </tr> --}}
+
+
+
+
+             
+
+
+
+
+
+
+
+
+@endsection
+@section('footer')
+@endsection

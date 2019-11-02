@@ -1,0 +1,27 @@
+@foreach($users as $row)   
+        <tr>
+            <td>{{$row['name']}}</td>
+            <td>
+            {{-- @foreach($up as $perm) --}}
+                    @if(auth()->user()->hasPermissionTo('edit_project'))
+                {{-- @if($row->hasPermissionTo('edit_project')) --}}                
+                {{-- getID($row['id']);                                                          
+                // App\Http\Controllers\adminController::getID($row['id']); --}}
+                {{-- @if($usersss->hasPermissionTo('edit_project')) --}}
+                    {{-- <a>
+                        <button type="submit" name="give_project" class="btn btn-success" id="getPermB">Remove to Project Editor</button>
+                    </a>   --}}  
+                    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}                            
+                @else
+                    <a>
+                        <button type="submit" name="revoke_mech" class="btn btn-danger">Add to Project Editor</button>
+                    </a>                    
+                @endif                                
+            {{-- @endforeach --}}
+            </td>
+            <td>
+                {{ Form::checkbox('roles[]',  $user->id ) }}
+            </td>
+
+        </tr>
+        @endforeach
